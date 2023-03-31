@@ -56,7 +56,7 @@ export const EditPost = () => {
 			const fields = {
 				title,
 				imageUrl,
-				tags: tags.split(','),
+				tags: tags.split(' '),
 				text
 			}
 			const { data } = isEditing 

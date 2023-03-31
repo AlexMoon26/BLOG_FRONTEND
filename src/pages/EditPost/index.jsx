@@ -80,7 +80,7 @@ export const EditPost = () => {
           setTitle(data.title);
           setText(data.text);
           setImageUrl(data.imageUrl);
-          setTags(data.tags.join(','))
+          setTags(data.tags.join(' '))
       }).catch(err => {
         console.log(err);
       })

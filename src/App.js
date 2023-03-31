@@ -1,28 +1,30 @@
+import React from "react";
 import { Routes, Route } from "react-router-dom";
 import {useDispatch, useSelector} from 'react-redux';
 
 
 import Container from "@mui/material/Container";
 
-
-
 import { Header, Loader} from "./components";
 import { Home, FullPost, Registration, AddPost, EditPost, Login } from "./pages";
-import React from "react";
 import { fetchAuthMe, selectIsAuth } from "./redux/slices/auth";
 
 function App() {
 	const dispatch = useDispatch();
+	const [isLoading, setIsLoading] = React.useState(true);
   const isAuth = useSelector(selectIsAuth);
-
+	const userData = useSelector(state => state.auth);
 	React.useEffect(() => {
 		dispatch(fetchAuthMe());
 		
 	}, [])
 
-	if(!isAuth){
+	if(userData.status === 'loading'){
 		return <Loader />
 	}
+	
+
+	
 
 	
   return (

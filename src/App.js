@@ -6,7 +6,7 @@ import Container from "@mui/material/Container";
 
 
 
-import { Header } from "./components";
+import { Header, Loader} from "./components";
 import { Home, FullPost, Registration, AddPost, EditPost, Login } from "./pages";
 import React from "react";
 import { fetchAuthMe, selectIsAuth } from "./redux/slices/auth";
@@ -15,11 +15,16 @@ function App() {
 	const dispatch = useDispatch();
   const isAuth = useSelector(selectIsAuth);
 
-
 	React.useEffect(() => {
 		dispatch(fetchAuthMe());
 		
 	}, [])
+
+	if(!isAuth){
+		return <Loader />
+	}
+
+	
   return (
     <>
       <Header />

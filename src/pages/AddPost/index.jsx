@@ -30,7 +30,7 @@ export const AddPost = () => {
 		try {
 			const fromData = new FormData();
 			const file = event.target.files[0];
-			fromData.append('image', file);
+			fromData.append('image' || 'gif', file);
 			const { data } = await axios.post('/upload', fromData);
 			setImageUrl(data.url);
 		} catch (err) {

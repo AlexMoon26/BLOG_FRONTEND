@@ -51,7 +51,7 @@ export const Home =  () => {
 									commentsCount={3}
 									tags={obj.tags}
 									
-									isEditable={userData?._id === obj.user._id || userData._id === '6426c24f8b7445bf151ab163'}
+									isEditable={userData?._id === obj.user._id || userData?._id === '6426c24f8b7445bf151ab163'}
 							/>
 						),
 					)}

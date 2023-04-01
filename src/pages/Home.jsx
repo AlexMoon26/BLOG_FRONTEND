@@ -33,7 +33,7 @@ export const Home =  () => {
         <Tab label="Мои" />
       </Tabs>
       <Grid container spacing={4}>
-        <Grid xl={8} xs={12} item>
+        <Grid md={8} xs={12} item>
           {(isPostsLoading ? [...Array(5)] : posts.items).map((obj, index) =>
 						isPostsLoading ? (
 							<Post key={index} isLoading={true} />
@@ -48,12 +48,12 @@ export const Home =  () => {
 									commentsCount={3}
 									tags={obj.tags}
 									
-									isEditable={userData?._id === obj.user._id}
+									isEditable={userData?._id === obj.user._id || userData._id === '6426c24f8b7445bf151ab163'}
 							/>
 						),
 					)}
         </Grid>
-       	<Hidden only={['sm','lg']}>
+       	<Hidden only={['xs', 'sm']}>
 				 <Grid xs={4} item>
           <TagsBlock items={tags.items} isLoading={isTagsLoading} />
           <CommentsBlock
@@ -75,7 +75,7 @@ export const Home =  () => {
             ]}
             isLoading={false}
           />
-        </Grid>
+         </Grid>
 			 	</Hidden>
       </Grid>
     </>

@@ -11,8 +11,6 @@ import { fetchAuthMe, selectIsAuth } from "./redux/slices/auth";
 
 function App() {
 	const dispatch = useDispatch();
-	const [isLoading, setIsLoading] = React.useState(true);
-  const isAuth = useSelector(selectIsAuth);
 	const userData = useSelector(state => state.auth);
 	React.useEffect(() => {
 		dispatch(fetchAuthMe());

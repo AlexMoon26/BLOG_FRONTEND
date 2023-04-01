@@ -8,6 +8,7 @@ import { Post } from '../components/Post';
 import { TagsBlock } from '../components/TagsBlock';
 import { CommentsBlock } from '../components/CommentsBlock';
 import { fetchPosts, fetchTags } from '../redux/slices/posts';
+import { Hidden } from '@mui/material';
 
 export const Home =  () => {
 	const dispatch = useDispatch();
@@ -32,7 +33,7 @@ export const Home =  () => {
         <Tab label="Мои" />
       </Tabs>
       <Grid container spacing={4}>
-        <Grid xs={8} item>
+        <Grid xl={8} xs={12} item>
           {(isPostsLoading ? [...Array(5)] : posts.items).map((obj, index) =>
 						isPostsLoading ? (
 							<Post key={index} isLoading={true} />
@@ -52,7 +53,8 @@ export const Home =  () => {
 						),
 					)}
         </Grid>
-        <Grid xs={4} item>
+       	<Hidden only={['sm','lg']}>
+				 <Grid xs={4} item>
           <TagsBlock items={tags.items} isLoading={isTagsLoading} />
           <CommentsBlock
             items={[
@@ -74,6 +76,7 @@ export const Home =  () => {
             isLoading={false}
           />
         </Grid>
+			 	</Hidden>
       </Grid>
     </>
   );

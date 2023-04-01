@@ -10,6 +10,9 @@ import { CommentsBlock } from '../components/CommentsBlock';
 import { fetchPosts, fetchTags } from '../redux/slices/posts';
 import { Hidden } from '@mui/material';
 
+import moment from 'moment/moment';
+import 'moment/locale/ru';
+
 export const Home =  () => {
 	const dispatch = useDispatch();
 	const userData = useSelector(state => state.auth.data);
@@ -43,7 +46,7 @@ export const Home =  () => {
 									title={obj.title}
 									imageUrl={obj.imageUrl? `${process.env.REACT_APP_API_URL}${obj.imageUrl}` : "https://res.cloudinary.com/practicaldev/image/fetch/s--UnAfrEG8--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/icohm5g0axh9wjmu4oc3.png"}
 									user={obj.user}
-									createdAt={obj.createdAt}
+									createdAt={moment(obj.createdAt).format('llll')}
 									viewsCount={obj.viewsCount}
 									commentsCount={3}
 									tags={obj.tags}

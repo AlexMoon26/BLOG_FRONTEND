@@ -7,7 +7,7 @@ import Container from "@mui/material/Container";
 
 import { Header, Loader} from "./components";
 import { Home, FullPost, Registration, AddPost, EditPost, Login } from "./pages";
-import { fetchAuthMe, selectIsAuth } from "./redux/slices/auth";
+import { fetchAuthMe } from "./redux/slices/auth";
 
 function App() {
 	const dispatch = useDispatch();
@@ -15,7 +15,7 @@ function App() {
 	React.useEffect(() => {
 		dispatch(fetchAuthMe());
 		
-	}, [])
+	}, [dispatch])
 
 	if(userData.status === 'loading'){
 		return <Loader />

@@ -1,6 +1,8 @@
 import React from "react";
 import {useDispatch, useSelector} from 'react-redux';
-import {Navigate} from 'react-router-dom';
+import {Navigate, useLocation} from 'react-router-dom';
+
+
 
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
@@ -12,6 +14,9 @@ import styles from "./Login.module.scss";
 import { fetchAuth, selectIsAuth } from "../../redux/slices/auth";
 
 export const Login = () => {
+	const location = useLocation();
+	const fromPage = location.state?.from?.pathname || '/';
+
 	const isAuth = useSelector(selectIsAuth)
 	const dispatch = useDispatch();
 	const {register, handleSubmit, formState: {errors, isValid}} = useForm({
@@ -35,7 +40,7 @@ export const Login = () => {
 	};
 
 	if(isAuth) {
-		return <Navigate to="/" />
+		return <Navigate to={fromPage} />
 	}
 
   return (

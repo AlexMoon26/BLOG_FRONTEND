@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from '../axios';
 
 import { Post } from "../components/Post";
@@ -12,6 +12,7 @@ import 'moment/locale/ru';
 import ReactMarkdown from 'react-markdown';
 
 export const FullPost = () => {
+	const navigate = useNavigate();
 	const [data, setData] = React.useState();
 	const [isLoading, setIsLoading] = React.useState(true);
 	const { id } = useParams();
@@ -25,6 +26,7 @@ export const FullPost = () => {
 		}).catch(err => {
 			console.warn(err);
 			alert('Ошибка при получении статьи');
+			navigate("/")
 		});
 
 	}, [id]);

@@ -18,7 +18,7 @@ import styles from './AddPost.module.scss';
 export const AddPost = () => {
 	const navigate = useNavigate();
   const isAuth = useSelector(selectIsAuth);
-  const [setLoading] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
   const [text, setText] = React.useState('');
   const [title, setTitle] = React.useState('');
   const [tags, setTags] = React.useState('');

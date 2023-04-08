@@ -6,6 +6,8 @@ import EditIcon from '@mui/icons-material/Edit';
 import EyeIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import CommentIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
 
+import { useNavigate } from 'react-router-dom';
+
 import styles from './Post.module.scss';
 import { UserInfo } from '../UserInfo';
 import { PostSkeleton } from './Skeleton';
@@ -27,6 +29,7 @@ export const Post = ({
   isLoading,
   isEditable,
 }) => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   if (isLoading) {
     return <PostSkeleton />;
@@ -35,6 +38,7 @@ export const Post = ({
   const onClickRemove = async () => {
     if(window.confirm('Вы действительно хотитие удалить статью?')){
 			await dispatch(fetchRemovePost(id));
+      navigate("/");
       window.location.reload();
       
 		}

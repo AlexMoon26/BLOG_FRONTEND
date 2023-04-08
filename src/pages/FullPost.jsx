@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 import axios from '../axios';
 
 import { Post } from "../components/Post";
@@ -17,6 +18,8 @@ export const FullPost = () => {
 	const [isLoading, setIsLoading] = React.useState(true);
 	const { id } = useParams();
 
+	const userData = useSelector(state => state.auth.data);
+
 	
 
 	React.useEffect(() => {
@@ -26,7 +29,7 @@ export const FullPost = () => {
 		}).catch(err => {
 			console.warn(err);
 			alert('Ошибка при получении статьи');
-			navigate("/")
+			navigate("/");
 		});
 
 	}, [id]);
@@ -38,7 +41,7 @@ export const FullPost = () => {
 	return (
 		<>
 			<Post
-				id={data.id}
+				id={data.id || id}
 				title={data.title}
 				imageUrl={data.imageUrl ? `${process.env.REACT_APP_API_URL || 'http://localhost:4444'}${data.imageUrl}` : "https://res.cloudinary.com/practicaldev/image/fetch/s--UnAfrEG8--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/icohm5g0axh9wjmu4oc3.png"}
 				user={data.user}
@@ -46,6 +49,7 @@ export const FullPost = () => {
 				viewsCount={data.viewsCount}
 				commentsCount={3}
 				tags={data.tags}
+				isEditable={userData?._id === data.user._id || userData?._id === '6426c24f8b7445bf151ab163'}
 				isFullPost
 			>
 				<ReactMarkdown children={data.text} />

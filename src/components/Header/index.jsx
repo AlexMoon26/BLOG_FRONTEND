@@ -11,6 +11,7 @@ import Button from '@mui/material/Button';
 // import MenuItem from '@mui/material/MenuItem';
 
 import styles from './Header.module.scss';
+import { DropDownMenu } from '../DropDownMenu';
 
 
 
@@ -31,34 +32,36 @@ export const Header = () => {
   return (
     <div className={styles.root}>
       <Container maxWidth="lg">
-          <div className={styles.inner}>
-            <Link className={styles.logo} to="/">
-              <div>MOON BLOG</div>
-            </Link>
-            <div className={styles.buttons}>
-              {isAuth ? (
-                <>
-                  <Link to="/add-post">
+        <div className={styles.inner}>
+          <Link className={styles.logo} to="/">
+            <div>MOON BLOG</div>
+          </Link>
+          <div className={styles.buttons}>
+            {isAuth ? (
+              <>
+                {/* <Link to="/add-post">
                   <Button variant="contained">Написать статью</Button>
                 </Link>
                 <Button onClick={onClickLogout} variant="contained" color="error">
                   Выйти
-                </Button>
+                </Button> */}
+
+                <DropDownMenu />
 
 
-                </>
-              ) : (
-                <>
-                  <Link to="/login" state={{ from: location }}>
-                    <Button variant="outlined">Войти</Button>
-                  </Link>
-                  <Link to="/register">
-                    <Button variant="contained">Создать аккаунт</Button>
-                  </Link>
-                </>
-              )}
-            </div>
+              </>
+            ) : (
+              <>
+                <Link to="/login" state={{ from: location }}>
+                  <Button variant="outlined">Войти</Button>
+                </Link>
+                <Link to="/register">
+                  <Button variant="contained">Создать аккаунт</Button>
+                </Link>
+              </>
+            )}
           </div>
+        </div>
       </Container>
     </div>
   );

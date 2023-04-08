@@ -9,17 +9,16 @@ import FormData from 'form-data';
 
 import { useSelector } from 'react-redux';
 import {selectIsAuth} from '../../redux/slices/auth';
-import { useNavigate, Navigate, useParams } from 'react-router-dom';
+import { useNavigate, Navigate } from 'react-router-dom';
 
 
 import 'easymde/dist/easymde.min.css';
 import styles from './AddPost.module.scss';
 
 export const AddPost = () => {
-  const {id} = useParams();
 	const navigate = useNavigate();
   const isAuth = useSelector(selectIsAuth);
-  const [isLoading, setLoading] = React.useState(false);
+  const [setLoading] = React.useState(false);
   const [text, setText] = React.useState('');
   const [title, setTitle] = React.useState('');
   const [tags, setTags] = React.useState('');

@@ -4,13 +4,20 @@ ul {
 a {
 	text-decoration: none;
 }
+
+.menuContainer{
+	
+	position: relative;
+	display: inline-block;
+}
+
 .menuTrigger {
 	cursor: pointer;
 }
 .dropdownMenu {
 	position: absolute;
 	top: 60px;
-	right: 360px;
+	right: -20px;
 	background-color: #fff;
 	border-radius: 8px;
 	width: 240px;
@@ -30,15 +37,12 @@ a {
 .dropdownMenu.active {
 	opacity: 1;
 	visibility: visible;
-	transform: translateY(0);
-	transition: var(--speed) ease;
 }
 .dropdownMenu.inactive {
 	opacity: 0;
     display: none;
 	visibility: hidden;
-	transform: translateY(-20px);
-	transition: var(--speed) ease;
+	transition: all 1s ease;
 }
 h3 {
 	width: 100%;
@@ -60,12 +64,10 @@ h3 {
 	img {
 		max-width: 20px;
 		margin-right: 10px;
-		opacity: 0.5;
-		transition: var(--speed);
+		opacity: 0.1;
 	}
 	a {
 		max-width: 100px;
 		margin-left: 10px;
-		transition: var(--speed);
 	}
 }

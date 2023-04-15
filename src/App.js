@@ -8,6 +8,7 @@ import Container from "@mui/material/Container";
 import { Header, Loader} from "./components";
 import { Home, FullPost, Registration, AddPost, EditPost, Login } from "./pages";
 import { fetchAuthMe } from "./redux/slices/auth";
+import { PageNotFound } from "./pages/PageNotFound";
 
 function App() {
 	const dispatch = useDispatch();
@@ -32,6 +33,7 @@ function App() {
           <Route path="/add-post" element={<AddPost />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Registration />} />
+					<Route path="/*" element={<PageNotFound/>} />
         </Routes>
       </Container>
     </>

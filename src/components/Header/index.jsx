@@ -6,9 +6,6 @@ import { selectIsAuth } from '../../redux/slices/auth';
 
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
-// import Menu from '@mui/material/Menu';
-// import Typography from '@mui/material/Typography';
-// import MenuItem from '@mui/material/MenuItem';
 
 import styles from './Header.module.scss';
 import { DropDownMenu } from '../DropDownMenu';
@@ -38,16 +35,7 @@ export const Header = () => {
           <div>
             {isAuth ? (
               <>
-                {/* <Link to="/add-post">
-                  <Button variant="contained">Написать статью</Button>
-                </Link>
-                <Button onClick={onClickLogout} variant="contained" color="error">
-                  Выйти
-                </Button> */}
-
                 <DropDownMenu />
-
-
               </>
             ) : (
               <div className={styles.buttons}>

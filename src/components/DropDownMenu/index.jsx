@@ -56,7 +56,6 @@ export const DropDownMenu = () => {
             <div className={styles.menuTrigger} onClick={() => {setOpen(!open)}}>
               <UserInfo {...userData.data} />
             </div>
-
             <div className={`${styles.dropdownMenu} ${open ? styles.active : styles.inactive} `}>
                 <h3>{userData.data.fullName}</h3>
                 <ul>

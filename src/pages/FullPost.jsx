@@ -11,6 +11,7 @@ import moment from 'moment/moment';
 import 'moment/locale/ru';
 
 import ReactMarkdown from 'react-markdown';
+import { Alert } from "@mui/material";
 
 export const FullPost = () => {
 	const navigate = useNavigate();
@@ -29,6 +30,7 @@ export const FullPost = () => {
 		}).catch(err => {
 			console.warn(err);
 			alert('Ошибка при получении статьи');
+			// return <Alert severity="error">Ошибка получения статьи!</Alert>
 			navigate("/");
 		});
 

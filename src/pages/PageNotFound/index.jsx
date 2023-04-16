@@ -17,7 +17,7 @@ export const PageNotFound = () => {
 					</Link>
 				</Grid>
 				<Grid>
-					<img src={GirlNotFound} alt='Девочка с мороженым'/>
+					<img className={styles.img} src={GirlNotFound} alt='Девочка с мороженым'/>
 				</Grid>
 		</Grid>
 	)

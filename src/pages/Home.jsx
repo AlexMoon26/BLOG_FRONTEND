@@ -18,7 +18,7 @@ export const Home =  () => {
 	const userData = useSelector(state => state.auth.data);
 	const {posts, tags} = useSelector(state => state.posts);
 
-	const isPostsLoading = posts.status === 'loading';
+	const isPostsLoading = posts.status === 'loading' || 'error';
 	const isTagsLoading = tags.status === 'loading';
 
 	React.useEffect(() => {

@@ -25,18 +25,38 @@ export const AddPost = () => {
   const [imageUrl, setImageUrl] = React.useState('');
 	const inputFileRef = React.useRef(null);
 
-  const handleChangeFile = async (event) => {
-		try {
-			const fromData = new FormData();
-			const file = event.target.files[0];
-			fromData.append('image' || 'gif', file);
-			const { data } = await axios.post('/upload', fromData);
-			setImageUrl(data.url);
-		} catch (err) {
-			console.warn(err);
-			alert('Ошибка при загрузке файла');
-		}
-	};
+	const postDetails = (imageUrl) => {
+    setLoading(true);
+    if (imageUrl === undefined) {
+     alert("Выберите изображение!")
+		 return;
+      };
+
+    if (imageUrl.type === "image/jpeg" || imageUrl.type === "image/png") {
+      const data = new FormData();
+      data.append("file", imageUrl);
+      data.append("upload_preset", "chat-app");
+      data.append("cloud_name", "dgfisnrrt");
+      fetch("https://api.cloudinary.com/v1_1/dgfisnrrt/image/upload", {
+        method: "POST",
+        body: data,
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setImageUrl(data.url.toString());
+          console.log(data.url.toString());
+          setLoading(false);
+        })
+        .catch((err) => {
+          console.log(err);
+          setLoading(false);
+        });
+    } else {
+      alert("Error")
+      };
+      setLoading(false);
+      return;
+    };
 
   const onClickRemoveImage = () => {
 		setImageUrl('');
@@ -93,13 +113,13 @@ export const AddPost = () => {
       <Button onClick={() => inputFileRef.current.click()} variant="outlined" size="large">
         Загрузить превью
       </Button>
-      <input ref={inputFileRef} type="file" onChange={handleChangeFile} hidden />
+      <input ref={inputFileRef} type="file" onChange={(e) => postDetails(e.target.files[0])} hidden />
       {imageUrl && (
         <>
 					<Button variant="contained" color="error" onClick={onClickRemoveImage}>
         		Удалить
         	</Button>
-					<img className={styles.image} src={`${process.env.REACT_APP_API_URL || 'http://localhost:4444'}${imageUrl}`} alt="Uploaded" />
+					<img className={styles.image} src={imageUrl} alt="Uploaded" />
 				</>
       )}
       <br />
